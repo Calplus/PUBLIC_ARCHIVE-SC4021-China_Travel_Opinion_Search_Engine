@@ -1,0 +1,56 @@
+# Sourced from Calplus (https://github.com/Calplus)
+# Data processing
+requests>=2.31
+httpx>=0.27
+tqdm>=4.66
+langdetect>=1.0.9
+
+# Elasticsearch
+elasticsearch>=8.12,<9
+
+# Sentiment analysis
+transformers>=4.37
+# torch: install the CUDA 12.8 build for GPU support (CUDA 12.8+ driver required):
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# CPU-only fallback (no GPU):
+#   pip install torch
+torch>=2.2
+senticnet>=1.6
+
+# Image classification
+open-clip-torch>=2.24
+Pillow>=10.2
+
+# Search API
+fastapi>=0.104
+uvicorn>=0.24
+pydantic>=2.0
+python-multipart>=0.0.9   # required for FastAPI file/form upload endpoints
+
+# Supabase
+supabase>=2.3
+psycopg2-binary>=2.9   # direct PostgreSQL connection (for scripts/run_sql.py)
+
+# VLM (OpenRouter)
+# No extra deps — uses httpx
+
+# Evaluation
+scikit-learn>=1.4
+pandas>=2.2
+numpy>=1.26
+openpyxl>=3.1     # Excel read/write for eval.xls
+matplotlib>=3.8   # chart generation for report figures
+
+# Crawling
+instagrapi>=2.3
+pinterest-dl>=1.1.0
+pycookiecheat>=0.7
+
+# Pre-labeling
+openai>=1.12
+
+# Utilities
+python-dotenv>=1.0
+datasketch>=1.6   # MinHash LSH dedup
+emoji>=2.12
+# Source: github.com/Calplus

@@ -1,0 +1,21 @@
+# Sourced from Calplus (https://github.com/Calplus)
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "pinterest-miner"
+version = "0.1.0"
+description = "Pinterest scraper for China travel content (SC4021 Information Retrieval)"
+requires-python = ">=3.10"
+dependencies = [
+    "pinterest-dl>=1.1.0",
+    "requests>=2.31.0",
+]
+# Sourced from Calplus (https://github.com/Calplus)
+
+[project.optional-dependencies]
+supabase = ["supabase>=2.0.0"]
+
+[project.scripts]
+pinterest-miner = "pinterest_miner.cli:main"

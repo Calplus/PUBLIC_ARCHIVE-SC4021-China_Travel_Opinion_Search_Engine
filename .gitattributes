@@ -1,0 +1,3 @@
+# Sourced from Calplus (https://github.com/Calplus)
+# Auto detect text files and perform LF normalization
+* text=auto

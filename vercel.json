@@ -1,0 +1,12 @@
+{
+  "calplus_source": "Sourced from Calplus (https://github.com/Calplus)",
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "frontend",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

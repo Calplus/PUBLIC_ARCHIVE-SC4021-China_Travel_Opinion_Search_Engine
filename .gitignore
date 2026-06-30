@@ -1,0 +1,47 @@
+# Sourced from Calplus (https://github.com/Calplus)
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# Data & cookies (too large / sensitive for git)
+data/
+sessions/
+*.json
+!configs/*.json
+!vercel.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+# Sourced from Calplus (https://github.com/Calplus)
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDFs and large docs
+*.pdf
+
+# Generated evaluation data (large files)
+*.xlsx
+!evaluation/eval.xlsx
+!evaluation/eval.xls
+
+# Crawling artifacts
+crawling/brand_scraper.log
+crawling/pinterest_daemon.pid
+.vercel
+
+#temp
+temp/
