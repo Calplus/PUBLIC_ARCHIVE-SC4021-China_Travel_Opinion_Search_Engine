@@ -38,6 +38,7 @@ Opinion search engine for China travel content. Search destinations/topics, get 
 ## Table of Contents
 
 - [At a Glance](#at-a-glance)
+- [Screenshots](#screenshots)
 - [Setup Guide](#setup-guide-step-by-step-for-beginners)
 - [Running the Evaluation](#running-the-evaluation-after-annotation)
 - [Common Problems](#common-problems)
@@ -48,6 +49,25 @@ Opinion search engine for China travel content. Search destinations/topics, get 
 - [Innovations](#innovations)
 - [Pipeline Commands](#pipeline-commands)
 - [Tech Stack](#tech-stack)
+
+---
+
+## Screenshots
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center"><img src="github_images/search-results.png" width="420" alt="Search results" /><br/><sub>Search Results: full-text search with sentiment and category breakdown</sub></td>
+    <td align="center"><img src="github_images/analytics-dashboard.png" width="420" alt="Analytics dashboard" /><br/><sub>Analytics Dashboard: sentiment trends and language distribution</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="github_images/geo-sentiment-map.png" width="420" alt="Geo sentiment map" /><br/><sub>Geo Map: city-level sentiment across China</sub></td>
+    <td align="center"><img src="github_images/sentiment-rankings.png" width="420" alt="Sentiment rankings" /><br/><sub>Sentiment Rankings: cities ranked by percent positive</sub></td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
