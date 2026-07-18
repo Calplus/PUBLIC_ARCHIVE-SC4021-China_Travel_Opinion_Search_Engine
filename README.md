@@ -17,6 +17,8 @@ Opinion search engine for China travel content. Search destinations/topics, get 
 
 **Course:** SC4021 Information Retrieval, NTU AY25/26 S2
 
+Demo Video: **(REDACTED TO PRESERVE PRIVACY DUE TO MEMBERS' NAMES/VOICES IN VIDEO FOR PUBLIC ARCHIVE PURPOSES.)**
+
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" />
   <img alt="Elasticsearch" src="https://img.shields.io/badge/Elasticsearch-8.17-005571?logo=elasticsearch&logoColor=white" />
@@ -39,7 +41,7 @@ Opinion search engine for China travel content. Search destinations/topics, get 
 
 - [At a Glance](#at-a-glance)
 - [Screenshots](#screenshots)
-- [Setup Guide](#setup-guide-step-by-step-for-beginners)
+- [Setup Guide](#setup-guide)
 - [Running the Evaluation](#running-the-evaluation-after-annotation)
 - [Common Problems](#common-problems)
 - [Data Overview](#data-overview)
@@ -71,28 +73,22 @@ Opinion search engine for China travel content. Search destinations/topics, get 
 
 ---
 
-## Setup Guide (step by step, for beginners)
+## Setup Guide
 
-### Prerequisites - install these first (one-time only)
+### Prerequisites (one-time setup)
 
 **1. Python 3.10+**
-- Check if you have it: open Terminal and type `python3 --version`
-- If not installed: download from https://www.python.org/downloads/
-- On Mac you can also run: `brew install python`
+- Check with `python3 --version`; if missing, install from https://www.python.org/downloads/ (or `brew install python` on Mac)
 
 **2. Git**
-- Check: `git --version`
-- If not installed: https://git-scm.com/downloads
-- On Mac: it will prompt you to install Xcode Command Line Tools; say Yes
+- Check with `git --version`; if missing, install from https://git-scm.com/downloads (on Mac this also prompts an Xcode Command Line Tools install, accept it)
 
-**3. Docker Desktop** (needed to run Elasticsearch)
-- Download from: https://www.docker.com/products/docker-desktop/
-- Install it, open it, and make sure the Docker whale icon is in your menu bar
-- You do NOT need to create a Docker account
+**3. Docker Desktop** (required to run Elasticsearch)
+- Install from https://www.docker.com/products/docker-desktop/ and launch it; no Docker account needed
 
-### Step 1: Clone the repo
+### Step 1: Clone the repository
 
-Open Terminal (on Mac: press Cmd+Space, type "Terminal", press Enter).
+Open a terminal (on Mac: Cmd+Space, type "Terminal", Enter).
 
 ```bash
 cd ~/Desktop
@@ -100,13 +96,13 @@ git clone https://github.com/PHY041/sc4021-search-engine.git
 cd sc4021-search-engine
 ```
 
-### Step 2: Create Python virtual environment
+### Step 2: Create a virtual environment
 
 ```bash
 python3 -m venv venv
 ```
 
-This creates a `venv/` folder. Now activate it:
+Activate it:
 
 **Mac/Linux:**
 ```bash
@@ -118,7 +114,7 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-You should see `(venv)` at the start of your terminal prompt. **You need to run this every time you open a new terminal.**
+The prompt should now show `(venv)`. Re-activate it in every new terminal session.
 
 ### Step 3: Install dependencies
 
@@ -126,15 +122,15 @@ You should see `(venv)` at the start of your terminal prompt. **You need to run 
 pip install -r requirements.txt
 ```
 
-This will download ~2GB of packages (PyTorch, transformers, etc.). Takes 5-10 minutes on first run.
+Downloads roughly 2GB of packages (PyTorch, transformers, etc.); expect 5-10 minutes on first run.
 
-If you get an error about `torch`, try:
+If the `torch` install fails:
 ```bash
 pip install torch --index-url https://download.pytorch.org/whl/cpu
 pip install -r requirements.txt
 ```
 
-### Step 4: Set up environment variables
+### Step 4: Configure environment variables
 
 **Mac/Linux:**
 ```bash
@@ -145,48 +141,45 @@ cp .env.example .env
 copy .env.example .env
 ```
 
-Then ask [REDACTED MEMBER] for the actual Supabase key and paste it into the `.env` file:
+Then ask [REDACTED MEMBER] for the actual Supabase key and paste it into the `.env` file, editing the `SUPABASE_KEY=` line:
 
 **Mac/Linux:** `nano .env` (Ctrl+X, Y, Enter to save)
 
 **Windows:** `notepad .env`
 
-Edit the `SUPABASE_KEY=` line with the key [REDACTED MEMBER] provides.
-
-FOR SUBMISSION: The SUPABASE_KEY value is <REDACTED>
+Note: the Supabase key used for submission has been redacted from this archive.
 
 ### Step 5: Start Elasticsearch
 
-Make sure Docker Desktop is running (check the whale icon in menu bar).
+Ensure Docker Desktop is running.
 
-**First time only**: download and create the container:
+**First run** (downloads and creates the container, roughly 1GB):
 ```bash
 docker run -d --name es-travel -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" elasticsearch:8.17.0
 ```
-This downloads ~1GB. Wait until it finishes.
 
-**Every time after that**: just start it:
+**Subsequent runs:**
 ```bash
 docker start es-travel
 ```
 
-Check it's running:
+Verify it's running:
 ```bash
 curl http://localhost:9200
 ```
-You should see JSON with `"tagline" : "You Know, for Search"`.
+Expect a JSON response containing `"tagline": "You Know, for Search"`.
 
 ### Step 6: Import data into Elasticsearch
 
-This pulls all posts, comments, and Pinterest pins from Supabase into your local Elasticsearch instance. Only needed once (or after a fresh ES container):
+Pulls all posts, comments, and Pinterest pins from Supabase into the local Elasticsearch instance. Only needed once (or after a fresh ES container):
 
 ```bash
 python -m indexing.data_import --table all
 ```
 
-This can take several minutes depending on your connection speed. You'll see a progress bar for each table.
+Takes several minutes depending on connection speed, with a progress bar per table.
 
-> **Note:** If you use `python -m search` (Step 7 below), this step runs automatically when indices are empty, so you can skip it.
+> **Note:** `python -m search` (Step 7) runs this automatically when indices are empty, so it can be skipped.
 
 ### Step 7: Run the search engine
 
@@ -194,11 +187,7 @@ This can take several minutes depending on your connection speed. You'll see a p
 python -m search
 ```
 
-Open your browser and go to: **http://localhost:8000**
-
-You should see the search page. Try searching "great wall" or "beijing food".
-
-Press Ctrl+C in terminal to stop the server.
+Open **http://localhost:8000** in a browser to reach the search page (try "great wall" or "beijing food"). `Ctrl+C` stops the server.
 
 ---
 
@@ -268,7 +257,7 @@ sc4021-search-engine/
 │
 ├── classification/                  # Q4+Q5: Sentiment analysis
 │   ├── sentiment_pipeline.py        # RoBERTa + SenticNet ensemble (0.7/0.3)
-│   ├── aspect_sentiment.py          # 6-aspect sentiment (food, scenery, hotel, etc.)
+│   ├── aspect_sentiment.py          # 13-aspect sentiment (food, scenery, heritage, etc.)
 │   ├── ablation_study.py            # 4-config ablation comparison
 │   └── evaluate.py                  # Classification evaluation utilities
 │
